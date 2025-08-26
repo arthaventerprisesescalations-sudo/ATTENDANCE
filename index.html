@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Attendance & Report System</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+
+    <!-- Login -->
+    <div id="login-page" class="panel">
+      <h2>Login</h2>
+      <input type="text" id="username" placeholder="Username" />
+      <input type="password" id="password" placeholder="Password" />
+      <button onclick="login()">Login</button>
+    </div>
+
+    <!-- Admin -->
+    <div id="admin-panel" class="panel hidden">
+      <h2>Admin Panel</h2>
+      <h3>Add New User</h3>
+      <input type="text" id="newUsername" placeholder="New Username" />
+      <input type="password" id="newPassword" placeholder="New Password" />
+      <button onclick="addUser()">Add User</button>
+
+      <h3>Select User & Date</h3>
+      <select id="userSelect"></select>
+      <input type="date" id="reportDate" />
+      <button onclick="viewReport()">View Report</button>
+      <button onclick="viewMonthlyReport()">View Monthly Report</button>
+      <button onclick="exportCSV()">Export CSV</button>
+
+      <table id="reportTable"></table>
+    </div>
+
+    <!-- User -->
+    <div id="user-panel" class="panel hidden">
+      <h2>User Dashboard</h2>
+      <h3>Submit Today's Report</h3>
+      <button onclick="markAttendance()">Mark Present</button><br/>
+      <input type="number" id="totalCalls" placeholder="Total Calls" />
+      <input type="number" id="connectedCalls" placeholder="Connected Calls" />
+      <input type="number" id="confirmedCalls" placeholder="Confirmed Calls" />
+      <button onclick="submitReport()">Submit Report</button>
+
+      <h3>Your Reports</h3>
+      <button onclick="viewUserDaily()">View Today's Report</button>
+      <button onclick="viewUserMonthly()">View Monthly Report</button>
+
+      <table id="userReportTable"></table><br/>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT.firebaseapp.com",
+      databaseURL: "https://YOUR_PROJECT.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT.appspot.com",
+      messagingSenderId: "SENDER_ID",
+      appId: "APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
